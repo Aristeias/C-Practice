@@ -31,7 +31,7 @@ int input(struct score *p){
 }
 
 void print(struct score *p, int n){
-    float sum_1 = 0, sum_2 = 0, sum_3 = 0;
+    int sum_1 = 0, sum_2 = 0, sum_3 = 0;
     int index = 0;
     int max = 0;
 
@@ -45,7 +45,7 @@ void print(struct score *p, int n){
             index = i;
         }
     }
-    printf("%f %f %f\n", sum_1 / n, sum_2 / n, sum_3 / n);
+    printf("%d %d %d\n", sum_1 / n, sum_2 / n, sum_3 / n);
     printf("%s %s %d %d %d", p[index].num, p[index].name, p[index].subject_1, p[index].subject_2, p[index].subject_3);
 }
 
