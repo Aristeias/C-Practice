@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdbool.h>
 
 #define MaxSize 10
 
@@ -54,7 +55,7 @@ _Bool InitList(SqList *L)
         L->data[i] = 0;
     }
     L->length = 0;  
-    return 1;  
+    return true;  
 }
 
 /**
@@ -68,11 +69,11 @@ _Bool InitList(SqList *L)
 _Bool ListInsert(SqList *L, int i, int element){
     //位序异常
     if( i < 1 || i > L->length + 1){
-        return 0;
+        return false;
     }
     //空间异常
     if(L->length >= MaxSize){
-        return 0;
+        return false;
     }
     //数据后移
     for (int j = L->length; j >= i; j--)
@@ -82,7 +83,7 @@ _Bool ListInsert(SqList *L, int i, int element){
     //插入数据
     L->data[i - 1] = element;
     L->length++;
-    return 1;
+    return true;
 }
 
 /**
@@ -96,7 +97,7 @@ _Bool ListInsert(SqList *L, int i, int element){
 _Bool ListDelete(SqList *L, int i, int *element){
     //位序异常
     if( i < 1 || i > L->length + 1){
-        return 0;
+        return false;
     }
     //获取删除数据
     *element = L->data[i - 1];
@@ -106,7 +107,7 @@ _Bool ListDelete(SqList *L, int i, int *element){
         L->data[j - 1] = L->data[j];
     }
     L->length--;
-    return 1;
+    return true;
 }
 
 /**

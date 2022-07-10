@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<stdbool.h>
 
 #define InitSize 5
 
@@ -94,7 +95,7 @@ _Bool IncreaseSize(SeqList *L, int len){
 _Bool ListInsert(SeqList *L, int i, int element){
     //位序异常
     if( i < 1 || i > L->length + 1){
-        return 0;
+        return false;
     }
     //空间异常处理
     while (L->length >= L->MaxSize)
@@ -109,7 +110,7 @@ _Bool ListInsert(SeqList *L, int i, int element){
     //插入数据
     L->data[i - 1] = element;
     L->length++;
-    return 1;
+    return true;
 }
 
 /**
@@ -123,7 +124,7 @@ _Bool ListInsert(SeqList *L, int i, int element){
 _Bool ListDelete(SeqList *L, int i, int *element){
     //位序异常
     if( i < 1 || i > L->length + 1){
-        return 0;
+        return false;
     }
     //获取删除数据
     *element = L->data[i - 1];
@@ -133,7 +134,7 @@ _Bool ListDelete(SeqList *L, int i, int *element){
         L->data[j - 1] = L->data[j];
     }
     L->length--;
-    return 1;
+    return true;
 }
 
 /**
