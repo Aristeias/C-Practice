@@ -6,10 +6,12 @@ typedef struct LNode
 {
     int data;
     struct LNode *next;
+    //*LinkList 表示的是 
+    //
 }LNode, *LinkList;
 
 _Bool InitList(LinkList L);
-_Bool ListInsert(LinkList L, int i, int element);
+_Bool ListInsert(LinkList* L, int i, int element);
 _Bool InsertNextNode(LNode *p, int element);
 _Bool InsertPriorNode(LNode *p, int element);
 _Bool ListDelete(LinkList L, int i, int *e);
@@ -25,7 +27,7 @@ int main(){
     int x, i = 1;
     scanf("%d", &x);
     while(x != 1111){
-        ListInsert(L, i, x);
+        ListInsert(&L, i, x);
         i++;
         scanf("%d", &x);
     }
@@ -48,10 +50,10 @@ int main(){
     PrintList(L);
     printf("Length: %d\n", Length(L));
 
-    int deleteElement = -1,*e = &deleteElement;
-    ListDelete(L, 5, e);
+    int deleteElement = -1;
+    ListDelete(L, 5, &deleteElement);
     PrintList(L);
-    printf("被删除数据为：%d\n", *e);
+    printf("被删除数据为：%d\n", deleteElement);
     printf("Length: %d\n", Length(L));
 
 }
@@ -75,7 +77,7 @@ _Bool InitList(LinkList L){
  * @param element 插入数据 
  * @return _Bool 
  */
-_Bool ListInsert(LinkList L, int i, int element){
+_Bool ListInsert(LinkList* L, int i, int element){
     //位序异常
     if(i < 1){
         return false;
@@ -85,15 +87,15 @@ _Bool ListInsert(LinkList L, int i, int element){
         //不理解，L已经指向newData了，在此输出正常，但出了此函数就输出地址值
         LNode *newData = (LNode *)malloc(sizeof(LNode));
         newData->data = element;
-        newData->next = L;
-        L = newData;
+        newData->next = NULL;
+        (*L) = newData;
         //L->data = element;
         return true;
     }
     //寻找位序前一位元素
     LNode *p;
     int j = 1;
-    p = L;
+    p = (*L);
     while (p != NULL && j < i - 1)
     {
         p = p->next;
