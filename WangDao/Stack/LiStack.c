@@ -9,7 +9,7 @@ typedef struct LinkNode{
     struct LinkNode *next;
 }LinkNode, *LiStack;
 
-bool InitStack(LiStack S);
+bool InitStack(LiStack *S);
 bool StackEmpty(LiStack S);
 bool Push(LiStack* S, ElemType x);
 bool Pop(LiStack *S, ElemType *x);
@@ -18,7 +18,7 @@ void PrintStack(LiStack *S);
 
 int main(){
     LiStack S;
-    InitStack(S);
+    InitStack(&S);
     for (int i = 1; i < 5; i++)
     {
         Push(&S,i);
@@ -42,7 +42,7 @@ int main(){
  * @return true 
  * @return false 
  */
-bool InitStack(LiStack S){
+bool InitStack(LiStack *S){
     S = NULL;
     printf("InitStack\n");
     return true;
